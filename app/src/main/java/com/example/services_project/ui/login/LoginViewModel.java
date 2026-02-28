@@ -10,7 +10,7 @@ public class LoginViewModel extends ViewModel {
 
     // Initialisation du repository
     public void init(Context context) {
-        if (repository == null) {   // Évite la réinitialisation
+        if (repository == null) {
             repository = new LoginRepository(context);
         }
     }

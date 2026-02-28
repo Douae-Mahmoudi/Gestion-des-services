@@ -8,7 +8,7 @@ import com.example.services_project.R;
 public class ServicesDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "services_db";
-    private static final int DB_VERSION = 52;
+    private static final int DB_VERSION = 53;
 
     public ServicesDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -28,10 +28,10 @@ public class ServicesDatabaseHelper extends SQLiteOpenHelper {
                 "location TEXT, " +
                 "price TEXT, " +
                 "moreDetails TEXT, " +
-                "userId INTEGER DEFAULT 0" + // ID de l'auteur du service
+                "userId INTEGER DEFAULT 0" +
                 ")");
 
-        // Table candidates (EXISTANTE / MODIFIÉE)
+        // Table candidates
         db.execSQL("CREATE TABLE candidates (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "serviceId INTEGER, " +

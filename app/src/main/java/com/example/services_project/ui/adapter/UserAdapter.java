@@ -25,8 +25,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private final OnUserClickListener listener;
 
 
-      /*Interface pour gérer les clics sur les éléments de la liste et
-      pour demander le nombre de messages non lus (pour le badge).*/
+
     public interface OnUserClickListener {
         void onUserClick(User user);
 

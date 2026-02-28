@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView; // Import nécessaire pour la flèche de retour
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,7 +77,7 @@ public class UsersListFragment extends Fragment implements UserAdapter.OnUserCli
         buttonBack = root.findViewById(R.id.buttonBack); // Initialisation du bouton de retour
 
         // Configuration du bouton de retour
-        setupBackButton(); // Appel de la nouvelle méthode
+        setupBackButton();
 
         // Configuration du RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
@@ -108,17 +108,14 @@ public class UsersListFragment extends Fragment implements UserAdapter.OnUserCli
         return root;
     }
 
-    /**
-     * Configure le bouton de retour pour revenir au fragment précédent.
-     */
+
     private void setupBackButton() {
         if (buttonBack != null) {
             buttonBack.setOnClickListener(v -> {
-                // Tente de revenir à l'écran précédent dans la pile de fragments (HomeFragment)
                 if (getParentFragmentManager().getBackStackEntryCount() > 0) {
                     getParentFragmentManager().popBackStack();
                 } else {
-                    // Optionnel: Gérer le cas où le fragment n'est pas dans la pile, par exemple
+                    // Gérer le cas où le fragment n'est pas dans la pile, par exemple
                     // en revenant à la page d'accueil par défaut si c'est la racine.
                     Log.w(TAG, "Tentative de popBackStack, mais la pile est vide.");
                 }
@@ -126,9 +123,9 @@ public class UsersListFragment extends Fragment implements UserAdapter.OnUserCli
         }
     }
 
-    /**
-     * Configure la barre de recherche
-     */
+
+      //Configure la barre de recherche
+
     private void setupSearchView() {
         if (searchView == null) return;
 
@@ -167,11 +164,9 @@ public class UsersListFragment extends Fragment implements UserAdapter.OnUserCli
         }
     }
 
-    // ==================== GESTION DES CLICS ====================
+    //  GESTION DES CLICS
+     //Gère le clic sur un utilisateur pour lancer ChatActivity.
 
-    /**
-     * Gère le clic sur un utilisateur pour lancer ChatActivity.
-     */
     @Override
     public void onUserClick(User user) {
         if (user.getId() != currentUserId) {
@@ -184,24 +179,14 @@ public class UsersListFragment extends Fragment implements UserAdapter.OnUserCli
         }
     }
 
-    // ==================== GESTION DES MESSAGES NON LUS ====================
-
-    /**
-     * Appelé par l'Adapter pour obtenir le nombre de messages non lus de l'utilisateur cible.
-     * @param targetUserId L'ID de l'utilisateur qui nous a envoyé des messages non lus.
-     * @return Le nombre de messages non lus.
-     */
+    // GESTION DES MESSAGES NON LUS
     @Override
     public int getUnreadCount(int targetUserId) {
         if (currentUserId == DEFAULT_USER_ID) return 0;
         return viewModel.getUnreadMessageCount(targetUserId);
     }
 
-    // ==================== GESTION DE LA SESSION ====================
-
-    /**
-     * Récupère l'ID utilisateur réel à partir de SharedPreferences.
-     */
+    //GESTION DE LA SESSION
     private int getCurrentUserIdFromSession(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREF_AUTH_FILE, Context.MODE_PRIVATE);
         return prefs.getInt(PREF_USER_ID_KEY, DEFAULT_USER_ID);

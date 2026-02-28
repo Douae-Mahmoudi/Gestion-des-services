@@ -85,7 +85,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
             } else {
 
-                // C'est une notification de CANDIDATURE REÇUE (OWNER)
+                // C'est une notification de CANDIDATURE REÇUE
                 String fullName = candidate.getFirstName() + " " + candidate.getLastName();
 
                 titleToDisplay = fullName + " a postulé pour votre service " + serviceTitle;

@@ -14,7 +14,7 @@ public class UserSessionManager {
     private static final String KEY_LAST_NAME = "lastName";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_PASSWORD = "password";
-    private static final String KEY_PROFILE_IMAGE_PATH = "profile_image_path"; // ✅ NOUVEAU
+    private static final String KEY_PROFILE_IMAGE_PATH = "profile_image_path";
 
     private final SharedPreferences prefs;
     private final SharedPreferences.Editor editor;
@@ -24,9 +24,7 @@ public class UserSessionManager {
         editor = prefs.edit();
     }
 
-    // ----------------------------------------------------------
-    // ✔️ Sauvegarder le profil complet de l'utilisateur
-    // ----------------------------------------------------------
+
     public void saveLoggedUser(User user) {
         if (user == null) return;
 
@@ -38,9 +36,7 @@ public class UserSessionManager {
         editor.commit();
     }
 
-    // ----------------------------------------------------------
-    // ✔️ Récupérer toutes les infos de l'utilisateur
-    // ----------------------------------------------------------
+
     public User getLoggedUser() {
         int id = prefs.getInt(KEY_USER_ID, -1);
         String email = prefs.getString(KEY_EMAIL, null);
@@ -58,45 +54,33 @@ public class UserSessionManager {
         return user;
     }
 
-    // ----------------------------------------------------------
-    // ✔️ Sauvegarder uniquement l'ID utilisateur
-    // ----------------------------------------------------------
+
     public void saveUserId(int userId) {
         editor.putInt(KEY_USER_ID, userId).commit();
     }
 
-    // ----------------------------------------------------------
-    // ✔️ Récupérer uniquement l'ID utilisateur
-    // ----------------------------------------------------------
+
     public int getUserId() {
         return prefs.getInt(KEY_USER_ID, -1);
     }
 
-    // ----------------------------------------------------------
-    // ✅ NOUVEAU : Sauvegarder le chemin de la photo de profil
-    // ----------------------------------------------------------
+
     public void saveProfileImagePath(String imagePath) {
         editor.putString(KEY_PROFILE_IMAGE_PATH, imagePath).apply();
     }
 
-    // ----------------------------------------------------------
-    // ✅ NOUVEAU : Récupérer le chemin de la photo de profil
-    // ----------------------------------------------------------
+
     public String getProfileImagePath() {
         return prefs.getString(KEY_PROFILE_IMAGE_PATH, null);
     }
 
-    // ----------------------------------------------------------
-    // ✔️ Déconnexion : vider la session
-    // ----------------------------------------------------------
+    // Déconnexion : vider la session
     public void logoutUser() {
         editor.clear();
         editor.apply();
     }
 
-    // ----------------------------------------------------------
-    // 🔹 Réinitialiser le mot de passe pour l'utilisateur connecté
-    // ----------------------------------------------------------
+    // Réinitialiser le mot de passe pour l'utilisateur connecté
     public boolean changePasswordForLoggedUser(String newPassword, Context context) {
         User user = getLoggedUser();
         if (user == null) return false;

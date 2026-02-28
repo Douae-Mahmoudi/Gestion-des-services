@@ -9,7 +9,7 @@ import com.example.services_project.ui.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_DURATION = 3000; // Durée de l'écran de splash (en ms)
+    private static final int SPLASH_DURATION = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             // Démarrer LoginActivity après le délai
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish(); // Ferme l'activité Splash pour ne pas revenir en arrière
+            finish();
         }, SPLASH_DURATION);
     }
 }

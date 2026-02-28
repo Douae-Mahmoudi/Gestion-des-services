@@ -17,7 +17,6 @@
         android:orientation="vertical"
         android:background="@android:color/white">
 
-        <!-- SECTION COMPACTE (TOUJOURS VISIBLE) -->
         <LinearLayout
             android:id="@+id/layoutCompact"
             android:layout_width="match_parent"
@@ -29,7 +28,6 @@
             android:focusable="true"
             android:background="?attr/selectableItemBackground">
 
-            <!-- Cercle avec Initiale -->
             <FrameLayout
                 android:layout_width="48dp"
                 android:layout_height="48dp"

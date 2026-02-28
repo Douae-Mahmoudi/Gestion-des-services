@@ -52,11 +52,9 @@ public class HomeFragment extends Fragment {
         filterIcon = root.findViewById(R.id.filterIcon);
         messageIcon = root.findViewById(R.id.messageIcon);
 
-        // INIT ADAPTER (vide)
         adapter = new ServiceAdapter(requireContext(), new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
-        // INIT VIEWMODEL
         viewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
 
         // OBSERVER DATABASE
@@ -114,7 +112,7 @@ public class HomeFragment extends Fragment {
         adapter.updateList(filtered);
     }
 
-    // FILTRAGE PAR CATÉGORIE (
+    // FILTRAGE PAR CATÉGORIE
     private void showFilterDialog() {
 
         final String[] categories = {

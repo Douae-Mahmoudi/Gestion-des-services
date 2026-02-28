@@ -164,22 +164,18 @@ public class ProfileFragment extends Fragment {
         String oldPwd = etOldPassword.getText().toString().trim();
         String newPwd = etNewPassword.getText().toString().trim();
         String confirmPwd = etConfirmPassword.getText().toString().trim();
-
         if (oldPwd.isEmpty() || newPwd.isEmpty() || confirmPwd.isEmpty()) {
             Toast.makeText(getContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if (!oldPwd.equals(currentUser.getPassword())) {
             Toast.makeText(getContext(), " Ancien mot de passe incorrect", Toast.LENGTH_SHORT).show();
             return;
         }
-
         if (!newPwd.equals(confirmPwd)) {
             Toast.makeText(getContext(), " Les mots de passe ne correspondent pas", Toast.LENGTH_SHORT).show();
             return;
         }
-
         // Vérification du mot de passe
         if (!isValidPassword(newPwd)) {
             Toast.makeText(getContext(), " Le mot de passe doit contenir au moins une lettre majuscule, un chiffre et un caractère spécial.", Toast.LENGTH_SHORT).show();

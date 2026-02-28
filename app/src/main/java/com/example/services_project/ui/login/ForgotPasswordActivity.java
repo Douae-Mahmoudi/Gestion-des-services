@@ -25,7 +25,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private UserSessionManager session;
     private LoginViewModel loginViewModel;
 
-    private String email; // 🔹 Email reçu depuis le Login
+    private String email; //Email reçu depuis le Login
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         btnResetPassword = findViewById(R.id.btnResetPassword);
         btnBackToLogin = findViewById(R.id.btnBackToLogin);
 
-        // 🔥 Bouton retour vers Login
+        //Bouton retour vers Login
         btnBackToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -52,7 +52,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         loginViewModel.init(this);
 
-        // 🔥 Récupération EMAIL envoyé depuis LoginActivity
+        // Récupération EMAIL envoyé depuis LoginActivity
         email = getIntent().getStringExtra("email_from_login");
 
         if (email == null || email.isEmpty()) {
@@ -61,7 +61,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             return;
         }
 
-        // 🔹 RESET MOT DE PASSE
+        //RESET MOT DE PASSE
         btnResetPassword.setOnClickListener(v -> {
             String newPwd = edtNewPassword.getText().toString().trim();
             String confirmPwd = edtConfirmPassword.getText().toString().trim();
@@ -88,12 +88,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 return;
             }
 
-            // 🔹 Mise à jour dans la base
+            // Mise à jour dans la base
             boolean success = loginViewModel.changePassword(email, newPwd);
 
             if (success) {
 
-                // 🔹 Mise à jour session
+                // Mise à jour session
                 User u = session.getLoggedUser();
                 if (u != null && u.getEmail().equals(email)) {
                     u.setPassword(newPwd);
@@ -102,7 +102,6 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "Mot de passe mis à jour avec succès !", Toast.LENGTH_LONG).show();
 
-                // 🔥 Retour Login + email pré-rempli
                 Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
                 intent.putExtra("email_reset", email);
                 startActivity(intent);

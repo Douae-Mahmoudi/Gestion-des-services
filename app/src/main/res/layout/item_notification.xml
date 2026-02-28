@@ -17,7 +17,6 @@
         android:padding="12dp"
         android:background="?android:attr/selectableItemBackground">
 
-        <!-- Indicateur de notification non lue (optionnel) -->
         <View
             android:id="@+id/indicatorUnread"
             android:layout_width="8dp"
@@ -27,7 +26,6 @@
             android:layout_marginEnd="8dp"
             android:visibility="gone"/>
 
-        <!-- Icône de notification réduite -->
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -35,16 +33,14 @@
             app:tint="@color/black"
             android:layout_gravity="center_vertical"
             android:contentDescription="Icône de notification"
-            android:layout_marginEnd="10dp"/> <!-- Espacement ajusté -->
+            android:layout_marginEnd="10dp"/>
 
-        <!-- Contenu de la notification -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Message de la notification -->
             <TextView
                 android:id="@+id/textNotificationMessage"
                 android:layout_width="wrap_content"
@@ -53,7 +49,6 @@
                 android:textSize="14sp"
                 android:textColor="@android:color/black"/>
 
-            <!-- Titre du service -->
             <TextView
                 android:id="@+id/textServiceTitle"
                 android:layout_width="wrap_content"
@@ -63,7 +58,6 @@
                 android:textColor="@android:color/darker_gray"/>
         </LinearLayout>
 
-        <!-- Date de la notification -->
         <TextView
             android:id="@+id/textNotificationDate"
             android:layout_width="wrap_content"

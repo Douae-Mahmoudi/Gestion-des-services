@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder> {
 
-    private final Context context;
+    private final Context context;//Il permet d’accéder aux ressources de l’application (layout, strings, couleurs) et de créer des vues
     private List<Service> serviceList = new ArrayList<>();
 
     public ServiceAdapter(Context context, List<Service> initialList) {

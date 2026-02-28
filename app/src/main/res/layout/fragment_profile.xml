@@ -126,7 +126,7 @@
                     android:layout_height="3dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="15dp"
-                    android:background="#1E88E5" />
+                    android:background="#4CAF50" />
 
                 <!-- Ancien mot de passe -->
                 <com.google.android.material.textfield.TextInputLayout

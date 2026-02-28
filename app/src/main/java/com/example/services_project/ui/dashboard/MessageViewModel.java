@@ -40,7 +40,7 @@ public class MessageViewModel extends AndroidViewModel {
         return repository;
     }
 
-    // ==================== GESTION DE L'UTILISATEUR COURANT ====================
+    //  GESTION DE L'UTILISATEUR COURANT
 
     public void setCurrentUserId(int userId) {
         this.currentUserId = userId;
@@ -51,7 +51,7 @@ public class MessageViewModel extends AndroidViewModel {
         return currentUserId;
     }
 
-    // ==================== CHARGEMENT DES UTILISATEURS ====================
+    // CHARGEMENT DES UTILISATEURS
 
     public void loadAllUsers() {
         if (currentUserId == -1) {
@@ -75,19 +75,14 @@ public class MessageViewModel extends AndroidViewModel {
         return usersList;
     }
 
-    // ==================== FILTRAGE DES UTILISATEURS ====================
+    // FILTRAGE DES UTILISATEURS
 
-    /**
-     * Retourne la liste filtrée des utilisateurs
-     */
+
     public LiveData<List<User>> getFilteredUsersList() {
         return filteredUsersList;
     }
 
-    /**
-     * Filtre les utilisateurs en fonction d'une requête de recherche
-     * @param query Le texte de recherche (nom ou email)
-     */
+
     public void filterUsers(String query) {
         if (query == null || query.trim().isEmpty()) {
             // Si la recherche est vide, afficher tous les utilisateurs
@@ -111,13 +106,10 @@ public class MessageViewModel extends AndroidViewModel {
         filteredUsersList.postValue(filtered);
     }
 
-    // ==================== GESTION DES UTILISATEURS ====================
 
     public User getUserById(int userId) {
         return repository.getUserById(userId);
     }
-
-    // ==================== GESTION DES CONVERSATIONS ====================
 
     public void loadConversation(int targetUserId) {
         if (currentUserId == -1) return;
@@ -132,29 +124,24 @@ public class MessageViewModel extends AndroidViewModel {
         return conversation;
     }
 
-    // ==================== ENVOI DE MESSAGES ====================
+    //  ENVOI DE MESSAGES
 
     public void sendMessage(int targetUserId, String content) {
         if (currentUserId == -1 || content == null || content.trim().isEmpty()) return;
-
         final String finalContent = content.trim();
-
         executor.execute(() -> {
             Message newMessage = new Message(currentUserId, targetUserId, finalContent);
-
             Log.d(TAG, "Message SENT by User: " + currentUserId +
                     " to Target: " + targetUserId +
                     " Content: " + finalContent);
-
             boolean success = repository.sendMessage(newMessage);
-
             if (success) {
                 loadConversation(targetUserId);
             }
         });
     }
 
-    // ==================== GESTION DES MESSAGES NON LUS ====================
+    //  GESTION DES MESSAGES NON LUS
 
     public int getUnreadMessageCount(int targetUserId) {
         if (currentUserId == -1) {
@@ -165,13 +152,10 @@ public class MessageViewModel extends AndroidViewModel {
 
     public void markMessagesAsRead(int targetUserId) {
         if (currentUserId == -1) return;
-
         executor.execute(() -> {
             int count = repository.markMessagesAsRead(targetUserId, currentUserId);
-
             if (count > 0) {
                 Log.d(TAG, count + " messages de l'utilisateur " + targetUserId + " marqués comme lus.");
-
                 // Recharge la liste des utilisateurs pour mettre à jour le badge
                 loadAllUsers();
             }

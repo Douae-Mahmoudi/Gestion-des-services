@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "services.db";
     private static final int DATABASE_VERSION = 26;
 
-    // --- Constantes TABLE_USERS ---
+    // Constantes TABLE_USERS
     public static final String TABLE_USERS = "users";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_FIRST_NAME = "firstName";
@@ -182,7 +182,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return userList;
     }
-
+//update password
     public boolean updatePassword(String email, String newPassword) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

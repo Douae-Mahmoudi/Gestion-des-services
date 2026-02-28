@@ -15,10 +15,8 @@ public class Candidate {
     private String serviceTitle;
     private String status;
 
-    // AJOUTÉ : Pour gérer l'expansion des cartes
     private boolean isExpanded = false;
 
-    // ✅ CONSTRUCTEUR PRINCIPAL AVEC 12 PARAMÈTRES (utilisé par Repository)
     public Candidate(int id, int applicantId, int serviceId, String firstName, String lastName,
                      String dateTime, String applicationDate, String location, String phone,
                      String email, String serviceTitle, String status) {
@@ -45,7 +43,6 @@ public class Candidate {
                 location, phone, email, null, status);
     }
 
-    // Constructeur avec 9 paramètres (pour nouvelle candidature)
     public Candidate(int applicantId, int serviceId, String firstName, String lastName,
                      String dateTime, String applicationDate, String location, String phone,
                      String email) {
@@ -53,7 +50,6 @@ public class Candidate {
                 location, phone, email, null, "PENDING");
     }
 
-    // Constructeur avec 7 paramètres (simplifié)
     public Candidate(int serviceId, String firstName, String lastName, String dateTime,
                      String location, String phone, String email) {
         this(0, 0, serviceId, firstName, lastName, dateTime, null, location, phone, email,
@@ -109,7 +105,6 @@ public class Candidate {
         return status;
     }
 
-    // AJOUTÉ : Getter pour isExpanded
     public boolean isExpanded() {
         return isExpanded;
     }
@@ -163,7 +158,6 @@ public class Candidate {
         this.status = status;
     }
 
-    // AJOUTÉ : Setter pour isExpanded
     public void setExpanded(boolean expanded) {
         isExpanded = expanded;
     }
